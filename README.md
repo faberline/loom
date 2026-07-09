@@ -60,7 +60,7 @@ Promise:
 Loom ships an agent-drivable CLI that follows the repository CLI convention and
 can operate the workflow control plane without bespoke scripts.
 Gate Inventory:
-- pending: projects/loom/tests/cli_contract.rs
+- pending: apps/loom/tests/cli_contract.rs
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -79,7 +79,7 @@ Promise:
 Loom exposes a compact h2c/OpenAPI route list for workflow submission, run
 control, status, result references, probes, metrics, and generated docs.
 Gate Inventory:
-- pending: projects/loom/tests/http_api.rs
+- pending: apps/loom/tests/http_api.rs
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -98,7 +98,7 @@ Promise:
 Loom runs as a dedicated k8s-native workflow scheduler with operator-managed
 state, probes, backup policy, rolling upgrades, and stable network identity.
 Gate Inventory:
-- pending: projects/loom/k8s
+- pending: apps/loom/k8s
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -117,7 +117,7 @@ Promise:
 Loom remains stable under long-running workflow load, restart cycles, and
 backpressure without leaking resources or losing committed workflow transitions.
 Gate Inventory:
-- pending: projects/loom/tests/long_running_stability.rs
+- pending: apps/loom/tests/long_running_stability.rs
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -136,7 +136,7 @@ Promise:
 Loom replicates workflow state through a primary/replica topology so committed
 workflow transitions survive leader failure and replica recovery.
 Gate Inventory:
-- pending: projects/loom/tests/primary_replicas.rs
+- pending: apps/loom/tests/primary_replicas.rs
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -155,7 +155,7 @@ Promise:
 Loom protects workflow control APIs and worker integration with explicit tenant
 authorization, auditability, network policy, and managed secret rotation.
 Gate Inventory:
-- pending: projects/loom/tests/security_hardening.rs
+- pending: apps/loom/tests/security_hardening.rs
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -174,7 +174,7 @@ Promise:
 Loom schedules dynamic workflow DAGs by selecting ready nodes, publishing work
 through Relay, observing completion, and advancing workflow state deterministically.
 Gate Inventory:
-- pending: projects/loom/tests/workflow_orchestration.rs
+- pending: apps/loom/tests/workflow_orchestration.rs
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -193,7 +193,7 @@ Promise:
 Loom defines the durable workflow model used by clients, controllers, runners,
 and status/history views.
 Gate Inventory:
-- pending: projects/loom/tests/workflow_data_model.rs
+- pending: apps/loom/tests/workflow_data_model.rs
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -212,7 +212,7 @@ Promise:
 Loom persists workflow state before acknowledgement and survives process or
 leader failure without losing committed workflow transitions.
 Gate Inventory:
-- pending: projects/loom/tests/raft_workflow_state.rs
+- pending: apps/loom/tests/raft_workflow_state.rs
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -231,7 +231,7 @@ Promise:
 Loom selects the runner class for each task, while Relay routes delivery and
 workers own actual execution.
 Gate Inventory:
-- pending: projects/loom/tests/runner_selection.rs
+- pending: apps/loom/tests/runner_selection.rs
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -250,7 +250,7 @@ Promise:
 Loom exposes a thin h2c/OpenAPI control API for submitting workflows, checking
 status, and obtaining result refs without moving payload bytes.
 Gate Inventory:
-- pending: projects/loom/tests/client_control_api.rs
+- pending: apps/loom/tests/client_control_api.rs
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -269,7 +269,7 @@ Promise:
 Loom ships a reference worker harness while preserving the polyglot boundary:
 workers talk to Relay and Keep, not to Loom.
 Gate Inventory:
-- pending: projects/loom/tests/worker_harness.rs
+- pending: apps/loom/tests/worker_harness.rs
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -288,7 +288,7 @@ Promise:
 Loom schedules ready work fairly across tenants, workflows, and runner classes
 without materializing unbounded dormant branches.
 Gate Inventory:
-- pending: projects/loom/tests/fair_dispatch.rs
+- pending: apps/loom/tests/fair_dispatch.rs
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
@@ -307,8 +307,8 @@ Promise:
 Loom keeps workflow scheduling performance tied to repeatable meter/vat gates
 instead of anecdotal benchmark runs.
 Gate Inventory:
-- pending: projects/loom/vat.toml
-- pending: projects/loom/benchmark
+- pending: apps/loom/vat.toml
+- pending: apps/loom/benchmark
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|

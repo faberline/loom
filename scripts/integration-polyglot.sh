@@ -23,4 +23,4 @@ for i in $(seq 1 40); do
 done
 
 echo "=== run the Python polyglot producer + worker pool ==="
-LOOM=$LOOM RELAY=$RELAY KEEP=$KEEP python3 projects/loom/tests/integration/polyglot_e2e.py
+LOOM=$LOOM RELAY=$RELAY KEEP=$KEEP python3 apps/loom/tests/integration/polyglot_e2e.py

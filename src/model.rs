@@ -1,7 +1,7 @@
 //! Workflow data model (#112) — the sharded, strongly-consistent DAG state
 //! loom owns.
 //!
-//! Adapted from `projects/queue/queue/src/workflow` (Celery-style canvas) for
+//! Adapted from the retired queue workflow model (Celery-style canvas) for
 //! loom's server-side model: payloads are **claim-check refs into keep**, never
 //! inline bytes, and each task carries its [`RunnerClass`] (#164). loom keeps
 //! this state; relay carries dispatch, keep carries payloads.

@@ -30,7 +30,7 @@ LOOM_ADDR=127.0.0.1:7464 LOOM_RELAY=$RELAY LOOM_KEEP=$KEEP LOOM_COMPLETION_SHARD
 trap 'pkill -f target/release/loom; pkill -f target/release/relay-server; pkill -f target/release/keep; pkill -f bidi_worker.py' EXIT
 for i in $(seq 1 40); do curl -sf $LOOM/healthz>/dev/null 2>&1 && curl -sf $SL/healthz>/dev/null 2>&1 && curl -sf $KEEP/healthz>/dev/null 2>&1 && break; sleep 0.3; done
 
-"$VENV/bin/python" projects/loom/tests/integration/bidi_worker.py 7464 >$d/pyworker.log 2>&1 &
+"$VENV/bin/python" apps/loom/tests/integration/bidi_worker.py 7464 >$d/pyworker.log 2>&1 &
 sleep 1
 echo "=== submit two tasks (upper + echo) through the schema layer to the Python bidi worker ==="
 printf 'hello world' | curl -s -X PUT $KEEP/v1/inputs/g -H 'content-type: application/octet-stream' --data-binary @- >/dev/null

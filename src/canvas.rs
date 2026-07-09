@@ -4,7 +4,7 @@
 //! `then` (chain), parallel `fan_out` (group), and `join` (chord callback /
 //! fan-in barrier) — into a concrete [`WorkflowRun`] (nodes + deps + stages)
 //! that the scheduler drives. Seeded by the canvas shapes in
-//! `projects/queue/queue/src/workflow` (chain / group / chord), recast onto
+//! the retired queue workflow model (chain / group / chord), recast onto
 //! loom's server-side DAG model.
 
 use std::collections::BTreeSet;
