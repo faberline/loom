@@ -6,7 +6,7 @@
 #
 # Requires: target/debug/loom.
 set -euo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 
 DATA=$(mktemp -d)
 P0=7491; P1=7492; P2=7493

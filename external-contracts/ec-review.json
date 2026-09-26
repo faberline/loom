@@ -16,5 +16,5 @@
     "false_green_risk_checked": true
   },
   "findings": [],
-  "target_path": "apps/loom/external-contracts/behavior/541.md"
+  "target_path": "external-contracts/behavior/541.md"
 }

@@ -13,7 +13,7 @@
 #
 # Python deps (h2 + httpx) auto-installed into a throwaway venv.
 set -uo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 d=/tmp/loom-poly-bidi; rm -rf "$d"; mkdir -p "$d"
 RELAY=http://127.0.0.1:7461; KEEP=http://127.0.0.1:7462; LOOM=http://127.0.0.1:7463; SL=http://127.0.0.1:7464
 
@@ -30,7 +30,7 @@ LOOM_ADDR=127.0.0.1:7464 LOOM_RELAY=$RELAY LOOM_KEEP=$KEEP LOOM_COMPLETION_SHARD
 trap 'pkill -f target/release/loom; pkill -f target/release/relay-server; pkill -f target/release/keep; pkill -f bidi_worker.py' EXIT
 for i in $(seq 1 40); do curl -sf $LOOM/healthz>/dev/null 2>&1 && curl -sf $SL/healthz>/dev/null 2>&1 && curl -sf $KEEP/healthz>/dev/null 2>&1 && break; sleep 0.3; done
 
-"$VENV/bin/python" apps/loom/tests/integration/bidi_worker.py 7464 >$d/pyworker.log 2>&1 &
+"$VENV/bin/python" tests/integration/bidi_worker.py 7464 >$d/pyworker.log 2>&1 &
 sleep 1
 echo "=== submit two tasks (upper + echo) through the schema layer to the Python bidi worker ==="
 printf 'hello world' | curl -s -X PUT $KEEP/inputs/g -H 'content-type: application/octet-stream' --data-binary @- >/dev/null

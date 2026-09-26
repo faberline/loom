@@ -3,7 +3,7 @@
 # + a worker, run an echo workflow to succeeded, then verify the run is reaped
 # from the store after the retention window (GET /runs/{id} -> 404).
 set -euo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 rm -rf /tmp/loom-gc; mkdir -p /tmp/loom-gc
 RELAY_BIND=127.0.0.1:7431 RELAY_DATA_DIR=/tmp/loom-gc/relay ./target/release/relay-server >/tmp/loom-gc/relay.log 2>&1 & R=$!
 ./target/release/keep --host 127.0.0.1 --port 7396 >/tmp/loom-gc/keep.log 2>&1 & K=$!

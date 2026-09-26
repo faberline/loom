@@ -56,7 +56,7 @@ no per-replica configuration and no pod-ordinal / peer-DNS math to hand-roll.
 
 ## Deploy paths
 
-- **Direct install (kind / smoke):** `kubectl apply -k projects/loom/k8s/overlays/dev`
+- **Direct install (kind / smoke):** `kubectl apply -k k8s/overlays/dev`
   — the single-node base. Small and self-contained; relay + keep are prerequisites
   (their own services).
 - **Production HA:** the operator CR path (`loom k8s operator run` +

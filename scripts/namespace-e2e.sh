@@ -4,7 +4,7 @@
 # a run completes through the namespaced subjects (bare `resident` stays empty;
 # `tenant1::resident` gets the task). Uses the Rust bidi worker (no venv needed).
 set -uo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 d=/tmp/loom-ns; rm -rf $d; mkdir -p $d
 RELAY=http://127.0.0.1:7481; KEEP=http://127.0.0.1:7482; LOOM=http://127.0.0.1:7483; SL=http://127.0.0.1:7484
 RELAY_BIND=127.0.0.1:7481 RELAY_DATA_DIR=$d/relay ./target/release/relay-server >$d/relay.log 2>&1 &

@@ -6,7 +6,8 @@
 #
 # This is a cargo-workspace build, so the build context must be the repo root
 # (cargo needs every workspace member's Cargo.toml). The root .dockerignore
-# excludes target/ and .git to keep the context sane.
+# excludes target/ and .git to keep the context sane. relay and keep are
+# installed from faberline/relay and faberline/keep at RELAY_REV / KEEP_REV.
 #
 # One image backs every loom role (controller / worker / job-controller /
 # run-task / schema-layer); it also carries relay + keep so a single image can
@@ -17,6 +18,8 @@ FROM rust:1.92-slim-bookworm AS builder
 # `cargo build` on the host). Only these two values work: the binaries are
 # copied out of target/<profile>/.
 ARG CARGO_PROFILE=release
+ARG RELAY_REV=c7e3a7350b5e5867a1e7a3509cc894a6ce17e996
+ARG KEEP_REV=78190fb5a99853d16e9ae3793c997e24379c8d9d
 WORKDIR /src
 RUN apt-get update && apt-get install -y --no-install-recommends \
     pkg-config libssl-dev protobuf-compiler ca-certificates && rm -rf /var/lib/apt/lists/*
@@ -30,8 +33,13 @@ COPY --chown=root:root . .
 RUN --mount=type=cache,target=/usr/local/cargo/registry \
     --mount=type=cache,target=/usr/local/cargo/git \
     --mount=type=cache,target=/src/target \
-    cargo build $([ "$CARGO_PROFILE" = release ] && echo --release) -p loom -p relay -p keep \
- && cp "target/$CARGO_PROFILE/loom" "target/$CARGO_PROFILE/relay" "target/$CARGO_PROFILE/keep" /usr/local/bin/
+    cargo build $([ "$CARGO_PROFILE" = release ] && echo --release) -p loom \
+ && cp "target/$CARGO_PROFILE/loom" /usr/local/bin/ \
+ && for dep in "relay $RELAY_REV" "keep $KEEP_REV"; do set -- $dep; \
+      cargo install --locked $([ "$CARGO_PROFILE" = debug ] && echo --debug) --root /tmp/deps \
+        --git "https://github.com/faberline/$1" --rev "$2" --bin "$1" "$1" || exit 1; \
+    done \
+ && cp /tmp/deps/bin/relay /tmp/deps/bin/keep /usr/local/bin/
 
 # debian-slim (not distroless): the in-cluster `loom job-controller` shells
 # kubectl to create Jobs (it uses the pod's ServiceAccount token automatically),

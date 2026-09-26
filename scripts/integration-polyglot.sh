@@ -5,7 +5,7 @@
 # Uses LOOM_COMPLETION_SHARDS=1 so the Python worker reports to one completions
 # subject (no shard hashing). bash 3.2-safe.
 set -euo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 
 echo "=== build release binaries ==="
 cargo build --release -p loom -p relay -p keep 2>&1 | tail -1
@@ -23,4 +23,4 @@ for i in $(seq 1 40); do
 done
 
 echo "=== run the Python polyglot producer + worker pool ==="
-LOOM=$LOOM RELAY=$RELAY KEEP=$KEEP python3 apps/loom/tests/integration/polyglot_e2e.py
+LOOM=$LOOM RELAY=$RELAY KEEP=$KEEP python3 tests/integration/polyglot_e2e.py

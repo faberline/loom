@@ -1,4 +1,4 @@
-// SPEC-MANAGED: apps/loom/external-contracts/behavior/541.md#loom-cli-interface-issue
+// SPEC-MANAGED: external-contracts/behavior/541.md#loom-cli-interface-issue
 // CODEGEN-BEGIN
 // AW-EC-BEGIN
 // @ec loom-cli-interface-issue

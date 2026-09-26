@@ -61,7 +61,7 @@ can operate the workflow control plane without bespoke scripts.
 - Gate — behavior: pending CLI convention gate - required standard verbs,
   workflow submit/status ergonomics, worker harness wiring, and offline agent
   docs
-- Source: `pending: apps/loom/tests/cli_contract.rs`
+- Source: `pending: tests/cli_contract.rs`
 - Evidence: #541 — pending CLI convention gate
 
 ### HTTP/2 API List
@@ -74,7 +74,7 @@ control, status, result references, probes, metrics, and generated docs.
   workflow submit/status/control/result-ref routes.
 - Gate — behavior: pending h2c/OpenAPI route-list gate - probes, metrics,
   OpenAPI, route inventory, validation, and status codes
-- Source: `pending: apps/loom/tests/http_api.rs`
+- Source: `pending: tests/http_api.rs`
 - Evidence: pending h2c/OpenAPI route-list gate
 
 ### Kubernetes-Native Deployment
@@ -87,7 +87,7 @@ state, probes, backup policy, rolling upgrades, and stable network identity.
   probes, metrics, backup/restore, PDBs, and runner integration.
 - Gate — behavior: pending kustomize/operator render gate - CRD, operator,
   instance render, and kind dogfood
-- Source: `pending: apps/loom/k8s`
+- Source: `pending: k8s`
 - Evidence: pending k8s render/dogfood gates
 
 ### Long-Running Stability
@@ -101,7 +101,7 @@ transitions.
   compaction, snapshot, and recovery paths.
 - Gate — stability: pending long-running gate - soak, restart, crash recovery,
   bounded memory, and backpressure behavior
-- Source: `pending: apps/loom/tests/long_running_stability.rs`
+- Source: `pending: tests/long_running_stability.rs`
 - Evidence: pending long-running stability gate
 
 ### Primary Replicas
@@ -114,7 +114,7 @@ workflow transitions survive leader failure and replica recovery.
   and `core/raft-runtime`.
 - Gate — stability: pending raft primary/replica gate - leader failover,
   replica catch-up, snapshot restore, and committed-transition safety
-- Source: `pending: apps/loom/tests/primary_replicas.rs`
+- Source: `pending: tests/primary_replicas.rs`
 - Evidence: pending primary/replica failover gate
 
 ### Security Hardening
@@ -127,7 +127,7 @@ authorization, auditability, network policy, and managed secret rotation.
   policy, audit events, secret rotation, and request limits.
 - Gate — behavior: pending security gate - auth failure cases, tenant
   isolation, audit emission, secret rotation, and abuse limits
-- Source: `pending: apps/loom/tests/security_hardening.rs`
+- Source: `pending: tests/security_hardening.rs`
 - Evidence: pending security hardening gate
 
 ### Workflow Orchestration
@@ -141,7 +141,7 @@ deterministically.
   frontier, dynamic fan-out/fan-in, and fan-in barriers.
 - Gate — behavior: pending workflow orchestration conformance gate - DAG
   transitions, retry, fan-in, fan-out, and completion state
-- Source: `pending: apps/loom/tests/workflow_orchestration.rs`
+- Source: `pending: tests/workflow_orchestration.rs`
 - Evidence: pending workflow orchestration gate
 
 ### Workflow Data Model
@@ -154,7 +154,7 @@ and status/history views.
   InputRef, and workflow history records.
 - Gate — behavior: pending data-model conformance gate - serialization,
   versioning, validation, and compatibility
-- Source: `pending: apps/loom/tests/workflow_data_model.rs`
+- Source: `pending: tests/workflow_data_model.rs`
 - Evidence: pending data-model conformance gate
 
 ### State Durability
@@ -167,7 +167,7 @@ leader failure without losing committed workflow transitions.
   `core/raft-runtime`; Snapshot: service-owned workflow state snapshots.
 - Gate — stability: pending raft durability gate - crash recovery, snapshot
   restore, and failover without committed workflow loss
-- Source: `pending: apps/loom/tests/raft_workflow_state.rs`
+- Source: `pending: tests/raft_workflow_state.rs`
 - Evidence: pending raft durability/failover gate
 
 ### Runner And Execution Selection
@@ -180,7 +180,7 @@ workers own actual execution.
   k8s-job, and local runners.
 - Gate — behavior: pending runner-selection gate - runner routing, fallback,
   retry, and status attribution
-- Source: `pending: apps/loom/tests/runner_selection.rs`
+- Source: `pending: tests/runner_selection.rs`
 - Evidence: pending runner-selection gate
 
 ### Client Control API
@@ -194,7 +194,7 @@ status, and obtaining result refs without moving payload bytes.
   `/openapi.json`, `/docs`.
 - Gate — behavior: pending h2c/OpenAPI API gate - submit, status, result-ref,
   validation, probes, metrics, and OpenAPI
-- Source: `pending: apps/loom/tests/client_control_api.rs`
+- Source: `pending: tests/client_control_api.rs`
 - Evidence: pending client-control API gate
 
 ### Worker Harness
@@ -207,7 +207,7 @@ workers talk to Relay and Keep, not to Loom.
   lease/heartbeat/ack plus keep input/result refs.
 - Gate — behavior: pending worker-harness gate - lease, keep IO, ack exactly
   once, heartbeat, and retry boundaries
-- Source: `pending: apps/loom/tests/worker_harness.rs`
+- Source: `pending: tests/worker_harness.rs`
 - Evidence: pending worker-harness gate
 
 ### Fair Dispatch
@@ -220,7 +220,7 @@ without materializing unbounded dormant branches.
   and lazy bounded materialization.
 - Gate — behavior: pending fairness conformance gate - quota, priority,
   starvation prevention, and bounded materialization
-- Source: `pending: apps/loom/tests/fair_dispatch.rs`
+- Source: `pending: tests/fair_dispatch.rs`
 - Evidence: pending fairness conformance gate
 
 ### Competitive Perf Gate
@@ -233,7 +233,7 @@ instead of anecdotal benchmark runs.
   Benchmark: Temporal/Celery-style comparison harnesses.
 - Gate — efficiency: pending loom scheduler meter gate - frontier throughput,
   memory, dormant branches, and dispatch latency
-- Source: `pending: apps/loom/vat.toml`, `pending: apps/loom/benchmark`
+- Source: `pending: vat.toml`, `pending: benchmark`
 - Evidence: pending meter/vat benchmark gate
 
 ### Stateful Service Workload
@@ -246,12 +246,12 @@ linked capability roots.
 - Root WI: #110
 - Surfaces: Raft: sharded workflow state primary/replica topology over
   `core/raft-core` and `core/raft-runtime`. K8s: dedicated StatefulSet/operator
-  topology for workflow state under `apps/loom/k8s/`.
+  topology for workflow state under `k8s/`.
 - Gate — behavior: the `stateful_storage` profile had its shared baseline
   resolved by the `aw` capability gate, which was deleted with the binary
 - Gate — stability: raft failover, replica catch-up, snapshot restore, and
   committed-transition safety
-- Source: `apps/loom/tests/integration/`
+- Source: `tests/integration/`
 - Evidence: the `aw` capability gate, deleted with the binary; composes
   Workflow Orchestration, State Durability, Primary Replicas, and
   Kubernetes-Native Deployment without duplicating their claims

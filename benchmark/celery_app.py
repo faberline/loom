@@ -1,4 +1,4 @@
-# SPEC-MANAGED: apps/loom/tech-design/specs/apps/loom/benchmark/celery_app.md#text-source-unit
+# SPEC-MANAGED: tech-design/specs/apps/loom/benchmark/celery_app.md#text-source-unit
 # CODEGEN-BEGIN
 from celery import Celery
 app = Celery('bench', broker='redis://localhost:6379/0', backend='redis://localhost:6379/1')

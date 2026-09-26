@@ -5,7 +5,7 @@
 # URLs, sends Done; the schema layer forwards the completion; the controller folds.
 # Verifies the worker round-trips through the schema layer end-to-end.
 set -uo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 d=/tmp/loom-sl; rm -rf $d; mkdir -p $d
 RELAY=http://127.0.0.1:7451; KEEP=http://127.0.0.1:7452; LOOM=http://127.0.0.1:7453; SL=http://127.0.0.1:7454
 RELAY_BIND=127.0.0.1:7451 RELAY_DATA_DIR=$d/relay ./target/release/relay-server >$d/relay.log 2>&1 &

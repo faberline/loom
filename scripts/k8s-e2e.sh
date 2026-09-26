@@ -7,16 +7,16 @@
 # Prereqs: docker (OrbStack/Docker Desktop), kind, kubectl. ~10-15min first run
 # (the in-container build). bash 3.2-safe.
 set -euo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 CLUSTER=${KIND_CLUSTER:-loom-verify}
 CTX="kind-$CLUSTER"
 
 kind get clusters 2>/dev/null | grep -qx "$CLUSTER" || kind create cluster --name "$CLUSTER" --wait 90s
-docker image inspect loom:verify >/dev/null 2>&1 || docker build -t loom:verify -f apps/loom/Dockerfile .
+docker image inspect loom:verify >/dev/null 2>&1 || docker build -t loom:verify -f Dockerfile .
 echo "=== loading image into kind ==="
 kind load docker-image loom:verify --name "$CLUSTER"
 echo "=== applying deploy ==="
-kubectl --context "$CTX" apply -f apps/loom/deploy/k8s.yaml
+kubectl --context "$CTX" apply -f deploy/k8s.yaml
 for d in relay keep loom-controller job-controller; do
   kubectl --context "$CTX" rollout status deploy/$d --timeout=120s
 done

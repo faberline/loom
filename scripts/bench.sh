@@ -7,7 +7,7 @@
 # Usage: bench.sh [M_runs] [N_workers]   (defaults: 200 runs, 4 workers)
 # Requires built binaries: target/debug/{relay-server,keep,loom}.
 set -euo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 
 M=${1:-200}
 N=${2:-4}

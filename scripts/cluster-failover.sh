@@ -4,7 +4,7 @@
 # committed state, and accepts new writes that replicate to survivors. The real
 # HA proof (survive a node crash). Requires target/debug/loom.  bash 3.2-safe.
 set -euo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 DATA=$(mktemp -d); P0=7494;P1=7495;P2=7496
 PEERS="0=http://127.0.0.1:$P0,1=http://127.0.0.1:$P1,2=http://127.0.0.1:$P2"
 port(){ case $1 in 0)echo $P0;;1)echo $P1;;2)echo $P2;;esac; }

@@ -4,7 +4,7 @@
 # from-source build for dev / CI. Rendered by `loom dockerfile render --variant
 # release`.
 #
-#   docker build -f projects/loom/Dockerfile.release -t loom:0.4.3 \
+#   docker build -f Dockerfile.release -t loom:0.4.3 \
 #     --build-arg LOOM_VERSION=loom@0.4.3 .
 #
 # The image arch (BuildKit TARGETARCH) selects the matching linux tarball:
@@ -14,7 +14,7 @@
 # ---- stage 1: fetch + verify the release binary (needs shell + curl) --------
 FROM debian:bookworm-slim AS fetch
 ARG LOOM_VERSION=loom@0.4.3
-ARG LOOM_REPO=chrischeng-c4/axiom
+ARG LOOM_REPO=faberline/loom
 ARG TARGETARCH
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl \
     && rm -rf /var/lib/apt/lists/*

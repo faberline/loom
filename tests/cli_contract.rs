@@ -1,4 +1,4 @@
-// SPEC-MANAGED: apps/loom/tech-design/semantic/source/apps-loom-tests-cli-contract-rs.md#unit-test
+// SPEC-MANAGED: tech-design/semantic/source/apps-loom-tests-cli-contract-rs.md#unit-test
 // <HANDWRITE gap="missing-generator:test:loom-bootstrap" tracker="#541" reason="Initial CLI contract test.">
 use std::process::Command;
 

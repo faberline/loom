@@ -1,10 +1,10 @@
 ---
 id: apps-loom-benchmark-celery-app-py
-summary: Lossless text-source-unit coverage for `apps/loom/benchmark/celery_app.py`.
+summary: Lossless text-source-unit coverage for `benchmark/celery_app.py`.
 fill_sections: [text-source-unit, changes]
 ---
 
-# Fillback apps/loom/benchmark/celery_app.py
+# Fillback benchmark/celery_app.py
 
 ## Source
 <!-- type: text-source-unit lang: bash -->
@@ -29,7 +29,7 @@ byh4KToKICAgIHJldHVybiB4Cg==
 
 ```yaml
 changes:
-  - path: "apps/loom/benchmark/celery_app.py"
+  - path: "benchmark/celery_app.py"
     action: modify
     section: text-source-unit
     impl_mode: codegen

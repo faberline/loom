@@ -8,13 +8,13 @@
 # this gate ratchets loom against its own best, the dormant axis competitors don't
 # cover. bash 3.2-safe.
 set -euo pipefail
-cd "$(dirname "$0")/../../.."
-BASELINE=apps/loom/docs/benchmark/baseline.json
+cd "$(dirname "$0")/.."
+BASELINE=docs/benchmark/baseline.json
 TOLERANCE=${PERF_TOLERANCE:-0.20}   # allow 20% noise on a dev box
 RUNS=${1:-200}; WORKERS=${2:-4}
 
 echo "=== measuring loom throughput (bench $RUNS runs / $WORKERS workers) ==="
-out=$(./apps/loom/scripts/bench.sh "$RUNS" "$WORKERS" 2>/dev/null | tr -d '\r')
+out=$(./scripts/bench.sh "$RUNS" "$WORKERS" 2>/dev/null | tr -d '\r')
 echo "$out"
 now=$(printf '%s\n' "$out" | sed -n 's/.*(\([0-9][0-9]*\) runs\/s completed.*/\1/p' | tail -1)
 [ -n "$now" ] || { echo "could not parse runs/s from bench output"; exit 2; }

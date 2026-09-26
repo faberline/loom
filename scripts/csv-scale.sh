@@ -4,7 +4,7 @@
 # wall-clock. Demonstrates within-run dynamic fan-out scaling. 1M rows is the
 # same path at data volume (larger chunks + a release build). Usage: csv-scale.sh [ROWS] [WORKERS]
 set -euo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 ROWS=${1:-200}; WORKERS=${2:-4}
 rm -rf /tmp/loom-relay-sc; mkdir -p /tmp/loom-relay-sc
 RELAY_BIND=127.0.0.1:7407 RELAY_DATA_DIR=/tmp/loom-relay-sc ./target/debug/relay-server >/tmp/loom-sc-relay.log 2>&1 & R=$!

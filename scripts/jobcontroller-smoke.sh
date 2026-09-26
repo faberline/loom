@@ -24,6 +24,6 @@ set -euo pipefail
 command -v kubectl >/dev/null || { echo "kubectl not found — needs a k8s cluster"; exit 1; }
 kubectl cluster-info >/dev/null 2>&1 || { echo "no reachable kube context"; exit 1; }
 : "${LOOM_RELAY:?set LOOM_RELAY}"; : "${LOOM_KEEP:?set LOOM_KEEP}"
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 echo "starting job-controller against $LOOM_RELAY (image ${LOOM_JOB_IMAGE:-loom:latest})"
 exec ./target/debug/loom job-controller

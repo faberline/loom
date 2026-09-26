@@ -4,7 +4,7 @@
 # to 100 csv-process across 8 workers; verify total rows processed == 1,000,000.
 # Uses release binaries + KEEP_BODY_LIMIT for the 16MB blob + LOOM_CSV_CHUNK_ROWS.
 set -euo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 ROWS=1000000; CHUNK=10000; WORKERS=8
 rm -rf /tmp/loom-1m; mkdir -p /tmp/loom-1m
 RELAY_BIND=127.0.0.1:7411 RELAY_DATA_DIR=/tmp/loom-1m/relay ./target/release/relay-server >/tmp/loom-1m/relay.log 2>&1 & R=$!

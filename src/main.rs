@@ -350,7 +350,7 @@ struct IssueCreateArgs {
 /// (`upgrade` / `issue`), per the CONTRIBUTING.md CLI convention (#475).
 const TOOL: cli_std::ToolInfo = cli_std::ToolInfo {
     project: "loom",
-    repo: "chrischeng-c4/axiom",
+    repo: "faberline/loom",
     target: env!("LOOM_TARGET"),
     version: env!("CARGO_PKG_VERSION"),
     git_sha: env!("LOOM_GIT_SHA"),
@@ -641,9 +641,9 @@ fn render_release_dockerfile(version: Option<&str>) -> String {
     for line in template.lines() {
         if line.starts_with("ARG LOOM_VERSION=") {
             out.push_str(&format!("ARG LOOM_VERSION={tag}"));
-        } else if line.starts_with("#   docker build -f projects/loom/Dockerfile.release -t loom:") {
+        } else if line.starts_with("#   docker build -f Dockerfile.release -t loom:") {
             out.push_str(&format!(
-                "#   docker build -f projects/loom/Dockerfile.release -t loom:{bare} \\"
+                "#   docker build -f Dockerfile.release -t loom:{bare} \\"
             ));
         } else if line.starts_with("#     --build-arg LOOM_VERSION=") {
             out.push_str(&format!("#     --build-arg LOOM_VERSION={tag} ."));

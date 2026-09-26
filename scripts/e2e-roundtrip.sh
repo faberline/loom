@@ -11,7 +11,7 @@
 # (cargo build -p relay --bin relay-server; cargo build -p keep --bin keep;
 #  cargo build -p loom --bin loom). Plaintext h2c, no TLS.
 set -euo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/.."
 
 RELAY=http://127.0.0.1:7402
 KEEPB=http://127.0.0.1:7381
